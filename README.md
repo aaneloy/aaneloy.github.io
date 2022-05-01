@@ -1,3 +1,3 @@
-## Website Coming up. Hang on buddy!!!
+## Website Coming up.
 
 
