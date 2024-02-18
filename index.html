@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <table style="width:100%;max-width:1200px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;background-color: #e6ffff;"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -22,10 +22,10 @@
                 <p class="name" style="text-align: center;">
                   Asif Ahmed Neloy
                 </p>
-                <p>I'm a <b>Teaching Professor</b> at the <b>Department of Computing Studies and Information Systems</b>, <a href="https://www.douglascollege.ca/">Douglas College</a> in New Westminster, British Columbia. Currently, I am teaching courses on Advanced Databases, System Analysis and Design, Data Analytics, and Fundamental Machine Learning. Aside from my teaching, I am actively pursuing theoretical and applied research related to Probabilistic and Bayesian Modeling, Anomaly Detection, Dimension Reduction, and interdisciplinary applications of Auto-Encoders. Previously, I taught undergraduate and graduate courses at <b>Vancouver Island University</b> and <b>University of Manitoba</b>.
+                <p>I'm a <b>Teaching Professor</b> at the <b>Department of Computing Studies and Information Systems</b>, <b><a href="https://www.douglascollege.ca/">Douglas College</a></b> in New Westminster, British Columbia. Currently, I am teaching courses on Advanced Databases, System Analysis and Design, Data Analytics, and Fundamental Machine Learning. Aside from my teaching, I am actively pursuing theoretical and applied research related to Probabilistic and Bayesian Modeling, Anomaly Detection, Dimension Reduction, and interdisciplinary applications of Auto-Encoders. Previously, I taught undergraduate and graduate courses at <b>Vancouver Island University</b> and <b>University of Manitoba</b>.
                 </p>                
                 <p>
-                  I obtained my Msc in Computer Science Degree from <b>University of Manitoba</b>, supervised by <a href="https://www.maxturgeon.ca/">Dr. Maxime Turgeon</a> and <a href="https://cakcora.github.io/">Dr. Cüneyt Akçora</a> where I focused on Dimension Reduction and Anomaly Detection using Unsupervised Machine Learning. Along with Unsupervised settings, I worked on various Data Analytics methods including Feature Extraction, Two-staged Modeling approach, Statistical modeling under <a href="https://github.com/UMDimReduction">Dimension Reduction Lab</a> and NSERC CREATE fund on The Visual and Automated Disease Analytics <a href="https://vada.cs.umanitoba.ca/">(VADA)</a> graduate training program. Prior to that, I worked with <a href="http://ece.northsouth.edu/people/dr-shahnewaz-siddique/">Dr. Shahnewaz Siddique</a> and <a href="https://www.albany.edu/~HE895353/zunayeed.html">Zunayeed Bin Zahir</a> on interdisciplinary research topics including Robotics, Recommender Systems, Health Informatics and Computer Vision. 
+                  I obtained my Msc in <b>Computer Science</b> Degree from <b>University of Manitoba</b>, supervised by <a href="https://www.maxturgeon.ca/">Dr. Maxime Turgeon</a> and <a href="https://cakcora.github.io/">Dr. Cüneyt Akçora</a> where I focused on <b>Dimension Reduction</b> and <b>Anomaly Detection</b> using Unsupervised Machine Learning. Along with Unsupervised settings, I researched on various Data Analytics methods including Feature Extraction, Two-staged Modeling approach, Statistical Modeling under <a href="https://github.com/UMDimReduction">Dimension Reduction Lab</a> and NSERC CREATE fund on The Visual and Automated Disease Analytics <a href="https://vada.cs.umanitoba.ca/">(VADA)</a> graduate training program. Prior to that, I worked with <a href="http://ece.northsouth.edu/people/dr-shahnewaz-siddique/">Dr. Shahnewaz Siddique</a> and <a href="https://www.albany.edu/~HE895353/zunayeed.html">Zunayeed Bin Zahir</a> on interdisciplinary research topics including Robotics, Recommender Systems, Health Informatics and Computer Vision. 
                 </p>
                 <p style="text-align:center">
                   <a href="mailto:neloya@douglascollege.ca">Email</a> &nbsp;/&nbsp;
@@ -3793,8 +3793,25 @@ for Topologically Varying Neural Radiance Fields</span>
               <td style="padding:0px">
                 <br>
                 <p style="text-align:right;font-size:small;">
-                  Feel free to steal this website's <a href="https://github.com/jonbarron/jonbarron_website">source code</a>. <strong>Do not</strong> scrape the HTML from this page itself, as it includes analytics tags that you do not want on your own website &mdash; use the github code instead. Also, consider using <a href="https://leonidk.com/">Leonid Keselman</a>'s <a href="https://github.com/leonidk/new_website">Jekyll fork</a> of this page.
+                  Template credit-<a href="https://jonbarron.info/">Jon Barron</a>!
+                  Thanks for dropping by.<br>
+                  Last updated <span id="lastUpdated"></span>.
                 </p>
+                
+                <script>
+                  // Get current date
+                  var currentDate = new Date();
+                
+                  // Format the date as "Month Day, Year"
+                  var formattedDate = currentDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  });
+                
+                  // Set the formatted date to the HTML element
+                  document.getElementById('lastUpdated').innerHTML = formattedDate;
+                </script> 
               </td>
             </tr>
           </tbody></table>
