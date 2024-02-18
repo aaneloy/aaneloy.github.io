@@ -3797,26 +3797,27 @@ for Topologically Varying Neural Radiance Fields</span>
                   Thanks for dropping by.<br>
                   Last updated <span id="lastUpdated"></span>.
                 </p>
-                
-                <script>
-                  // Get current date
-                  var currentDate = new Date();
-                
-                  // Format the date as "Month Day, Year"
-                  var formattedDate = currentDate.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  });
-                
-                  // Set the formatted date to the HTML element
-                  document.getElementById('lastUpdated').innerHTML = formattedDate;
-                </script> 
+                 
               </td>
             </tr>
           </tbody></table>
         </td>
       </tr>
     </table>
+    <script>
+      // Get current date
+      var currentDate = new Date();
+    
+      // Format the date as "Month Day, Year"
+      var formattedDate = currentDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    
+      // Set the formatted date to the HTML element
+      document.getElementById('lastUpdated').innerHTML = formattedDate;
+    </script>
+
   </body>
 </html>
