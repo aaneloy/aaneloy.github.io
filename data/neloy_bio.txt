@@ -1,0 +1,36 @@
+Asif Ahmed Neloy is an accomplished Computer Science Lecturer with a rich background spanning academia and industry. With a Master of Science in Computer Science from the University of Manitoba and a Bachelor of Science in Computer Science and Engineering from North South University, Neloy brings a strong foundation in theoretical knowledge and practical applications to his role.
+
+Currently serving as a Faculty/Professor at the Department of Computing Science and Information Systems at Douglas College since December 2023, Neloy has demonstrated his expertise in instructing a range of courses, including Systems Analysis & Design, Database I, and Fundamentals of Machine Learning during the Winter 2024 term.
+
+His dedication to education extends to his previous role as a Lecturer/Instructor at the Department of Computer Science, Faculty of Science and Technology at Vancouver Island University, where he provided engaging instruction and support for courses such as Computer Science I and Applications Programming.
+
+Neloy's industry experience includes a significant tenure at Forum Inc. in Winnipeg, MB, where he excelled as a Data and Business Specialist. In this role, he not only trained and mentored team members, leading to improved overall performance and productivity but also played a crucial role in implementing effective data analysis solutions, contributing to data-driven decision-making processes.
+
+His academic journey is marked by achievements and accolades, including prestigious awards such as the Graduate Student Travel Award, Trainee Travel Award, and the Faculty of Graduate Studies Prestigious Research Completion Scholarship, all from the University of Manitoba.
+
+Neloy's passion for research is evident in his diverse publications, covering topics ranging from anomaly detection and machine learning to robotics and automated delivery systems. He has presented at numerous conferences, including the ICDM 2022 in Orlando, Florida, showcasing his commitment to staying at the forefront of technological advancements.
+
+Beyond his academic and professional achievements, Neloy has actively contributed to the community through volunteer experiences, such as serving as a Peer Mentor at the University of Manitoba and conducting tutorial sessions and workshops on topics like Robotics and Machine Learning for undergraduate students.
+
+With a robust skill set encompassing programming languages like Python, R, C++, and SQL, proficiency in machine learning, data science, and a keen eye for data manipulation and visualization, Asif Ahmed Neloy is a dynamic professional dedicated to empowering the next generation of computer scientists.
+
+
+
+User
+add information regarding funding and awards
+ChatGPT
+Asif Ahmed Neloy is an accomplished Computer Science Lecturer with a rich background spanning academia and industry. With a Master of Science in Computer Science from the University of Manitoba and a Bachelor of Science in Computer Science and Engineering from North South University, Neloy brings a strong foundation in theoretical knowledge and practical applications to his role.
+
+Currently serving as a Faculty/Professor at the Department of Computing Science and Information Systems at Douglas College since December 2023, Neloy has demonstrated his expertise in instructing a range of courses, including Systems Analysis & Design, Database I, and Fundamentals of Machine Learning during the Winter 2024 term.
+
+His dedication to education extends to his previous role as a Lecturer/Instructor at the Department of Computer Science, Faculty of Science and Technology at Vancouver Island University, where he provided engaging instruction and support for courses such as Computer Science I and Applications Programming.
+
+Neloy's industry experience includes a significant tenure at Forum Inc. in Winnipeg, MB, where he excelled as a Data and Business Specialist. In this role, he not only trained and mentored team members, leading to improved overall performance and productivity but also played a crucial role in implementing effective data analysis solutions, contributing to data-driven decision-making processes.
+
+His academic journey is marked by achievements and accolades, including prestigious awards such as the Graduate Student Travel Award, Trainee Travel Award, and the Faculty of Graduate Studies Prestigious Research Completion Scholarship, all from the University of Manitoba. He was also honored with the Visual and Automated Disease Analytics (VADA) Graduate Trainee Stipend for the 2021-2022 fiscal year.
+
+Neloy's passion for research is evident in his diverse publications, covering topics ranging from anomaly detection and machine learning to robotics and automated delivery systems. He has presented at numerous conferences, including the ICDM 2022 in Orlando, Florida, showcasing his commitment to staying at the forefront of technological advancements.
+
+Beyond his academic and professional achievements, Neloy has actively contributed to the community through volunteer experiences, such as serving as a Peer Mentor at the University of Manitoba and conducting tutorial sessions and workshops on topics like Robotics and Machine Learning for undergraduate students.
+
+With a robust skill set encompassing programming languages like Python, R, C++, and SQL, proficiency in machine learning, data science, and a keen eye for data manipulation and visualization, Asif Ahmed Neloy is a dynamic professional dedicated to empowering the next generation of computer scientists. His exceptional achievements in funding and awards underscore his commitment to excellence and innovation in both teaching and research.
