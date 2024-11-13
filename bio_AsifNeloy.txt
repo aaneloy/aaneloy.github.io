@@ -1,0 +1,9 @@
+Asif Ahmed Neloy specializes in machine learning, data science, anomaly detection, and data-driven solutions, with a focus on interdisciplinary applications in healthcare technology and environmental science. He is a faculty member at Douglas College and an adjunct faculty member at the British Columbia Institute of Technology, where he teaches programming, database systems, and machine learning applications, supported by sophisticated academic experience and industry expertise.
+
+Asif holds a Master’s degree from the University of Manitoba, specializing in computer science and statistics, where his research addressed complex problems in unsupervised anomaly detection using auto-encoders. In his prior roles, Asif worked as a Data Scientist and served as a graduate trainee with the NSERC CREATE VADA program, gaining experience across various industries and data domains. His publications, presented at IEEE BigData and ICDM, contribute novel methodologies for robust anomaly detection and hybrid recommender systems, alongside advanced work in robotics. Recognized for his impactful research and cross-disciplinary integration, he maintains strong ties with academic and research communities to drive innovation in technology and data analytics.
+
+Specialization
+Machine learning, data science, anomaly detection, data analytics, interdisciplinary applications in healthcare and environmental science, robotics, recommender systems.
+
+Contact
+Portfolio - aaneloy.github.io | LinkedIn - linkedin.com/in/aaneloy
