@@ -1,9 +1,11 @@
-Asif Ahmed Neloy specializes in machine learning, data science, anomaly detection, and data-driven solutions, with a focus on interdisciplinary applications in healthcare technology and environmental science. He is a faculty member at Douglas College and an adjunct faculty member at the British Columbia Institute of Technology, where he teaches programming, database systems, and machine learning applications, supported by sophisticated academic experience and industry expertise.
+Educator and Senior Data Scientist. I teach programming, algorithms, databases, ML, and analytics, and I build production-grade models and data products that people actually use.
 
-Asif holds a Master’s degree from the University of Manitoba, specializing in computer science and statistics, where his research addressed complex problems in unsupervised anomaly detection using auto-encoders. In his prior roles, Asif worked as a Data Scientist and served as a graduate trainee with the NSERC CREATE VADA program, gaining experience across various industries and data domains. His publications, presented at IEEE BigData and ICDM, contribute novel methodologies for robust anomaly detection and hybrid recommender systems, alongside advanced work in robotics. Recognized for his impactful research and cross-disciplinary integration, he maintains strong ties with academic and research communities to drive innovation in technology and data analytics.
+I currently teach at University of British Columbia (Adjunct, Land & Food Systems), with prior terms at Douglas College, BCIT, VIU, and North South University. My classes are project-based with reproducible labs, versioned datasets, and clear rubrics - so students leave with working code, not just notes.
 
-Specialization
-Machine learning, data science, anomaly detection, data analytics, interdisciplinary applications in healthcare and environmental science, robotics, recommender systems.
+My research sits at the intersection of anomaly detection, representation learning, and probabilistic/Bayesian modeling. I’ve published on disentangled VAEs and unsupervised detection (IEEE BigData; Machine Learning with Applications) and contributed to health analytics as an NSERC CREATE VADA trainee. As an NSERC CREATE VADA trainee I built a hypertension risk model using large population health data and delivered reproducible results with strong governance. Previously, I worked with large, messy datasets and the privacy and audit requirements that come with them. Interests include cancer imaging and brain tumor use cases where classification and segmentation can move the needle for planning and reporting.
 
-Contact
-Portfolio - aaneloy.github.io | LinkedIn - linkedin.com/in/aaneloy
+Industry side: I’ve shipped forecasting and analytics systems in Medical labs, Clinics, pharma and real estate. Highlights include standardizing KPI layers, cutting forecast error by ~12%, reducing incidents ~50%, and improving p95 latency ~35%. 
+
+Day-to-day tools: Python, PyTorch, scikit-learn, SQL, FastAPI, Airflow/PySpark, Docker, GitHub Actions, and Power BI/Tableau.
+
+I enjoy turning messy requirements into stable pipelines, well-tested APIs, and readable docs. If you’re working on ML for health, public sector analytics, or data-rich education projects, let’s talk.

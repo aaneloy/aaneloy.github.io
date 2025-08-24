@@ -133,3 +133,17 @@ h2 {
 span.highlight {
   background-color: #ffffd0;
 }
+
+/* Spacing between universities in Teaching section */
+.teaching-list > li {
+  margin-bottom: 16px;   /* space between university blocks */
+}
+
+.teaching-list > li:last-child {
+  margin-bottom: 0;      /* no extra space after the last block */
+}
+
+/* Optional: small gap between the university label and its term list */
+.teaching-list > li > ul {
+  margin-top: 6px;
+}
