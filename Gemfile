@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# gem "rails"
-gem 'jekyll'
-gem 'rake'
+gem "jekyll"
+gem "rake"
+gem "csv"
 
