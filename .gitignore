@@ -1,0 +1,59 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+
+# === DATASETS ONLY (keep test images/videos) ===
+# Local downloaded and prepared datasets
+data
+# This covers:
+#   data/data/downloads/
+#   data/data/raw/
+#   data/data/frames/
+#   data/data/yolo/
+
+# Hugging Face / Kaggle cache if any
+.cache/
+.kaggle/
+
+# Training runs and logs (can be regenerated)
+runs_head/
+runs_eval/
+runs_video/
+runs/
+wandb/
+
+# Model artifacts (large, should not be in git)
+*.pt
+*.pth
+*.onnx
+*.engine
+*.plan
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python / venv
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE stuff
+.vscode/
+.idea/
+
+# Videos and large media
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.m4v
+
+TXT.txt
+google01d9ec69ca8fed21.html
