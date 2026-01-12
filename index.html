@@ -32,42 +32,838 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
     <style>
-      html { scroll-behavior: smooth; }
+      /* CSS Variables for theming */
+      :root {
+        --primary-color: #1772d0;
+        --primary-hover: #f09228;
+        --accent-purple: #6b21a8;
+        --accent-green: #1f7a3d;
+        --accent-red: #b91c1c;
+        --accent-blue: #1f4e79;
+        --bg-main: #f4f4f4;
+        --bg-card: #ffffff;
+        --bg-highlight: #ffffd0;
+        --text-primary: #1a1a2e;
+        --text-secondary: #4a4a68;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
+        --transition-fast: 0.2s ease;
+        --transition-medium: 0.3s ease;
+        --border-radius: 12px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #d8dcf1 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      /* Main container */
+      .main-container {
+        width: 100%;
+        max-width: 950px;
+        margin: 0 auto;
+        background-color: var(--bg-main);
+        box-shadow: var(--shadow-lg);
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Navigation */
       .top-nav {
         text-align: center;
-        margin: 0 0 10px 0;
+        padding: 20px 0 15px 0;
+        background: linear-gradient(135deg, var(--bg-card) 0%, #f8f9ff 100%);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 16px;
+      }
+
+      .nav-link {
+        display: inline-block;
+        padding: 8px 16px;
         font-size: 14px;
-        line-height: 1.2;
-      }
-      .top-nav a {
-        text-decoration: none;
-        margin: 0 10px;
         font-weight: 600;
-        color: #102346;
-        white-space: nowrap;
+        color: var(--text-primary);
+        text-decoration: none;
+        border-radius: 20px;
+        transition: all var(--transition-fast);
+        position: relative;
+        overflow: hidden;
       }
-      .top-nav a:hover { text-decoration: underline; }
+
+      .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: all var(--transition-fast);
+        transform: translateX(-50%);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color);
+        background-color: rgba(23, 114, 208, 0.08);
+      }
+
+      .nav-link:hover::before {
+        width: 60%;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 40px 30px;
+        gap: 30px;
+        align-items: flex-start;
+      }
+
+      .hero-content {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .hero-image {
+        flex: 0 0 auto;
+        text-align: center;
+      }
+
+      .profile-photo {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid var(--bg-card);
+        box-shadow: var(--shadow-md);
+        transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+      }
+
+      .profile-photo:hover {
+        transform: scale(1.05) rotate(2deg);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .name-title {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .name {
+        font-size: 42px;
+        font-weight: 700;
+        margin: 0;
+        background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-purple) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
       .tagline {
-        color: #4b0082;
+        color: var(--accent-purple);
         font-style: italic;
-        font-weight: 700;
+        font-weight: 600;
         font-size: 15px;
-        line-height: 1.25;
-        margin-top: 4px;
+        line-height: 1.4;
+        margin-top: 8px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, rgba(107, 33, 168, 0.08) 0%, rgba(23, 114, 208, 0.08) 100%);
+        border-radius: 8px;
+        display: inline-block;
       }
-      .project-title {
+
+      .bio-text {
+        line-height: 1.6;
+        color: var(--text-secondary);
+        text-align: justify;
+      }
+
+      .bio-text p {
+        margin-bottom: 14px;
+      }
+
+      /* Contact Links */
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .contact-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        background: var(--bg-card);
+        border: 2px solid var(--primary-color);
+        border-radius: 25px;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all var(--transition-fast);
+      }
+
+      .contact-btn:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Section Styling */
+      .section {
+        padding: 30px;
+        border-top: 1px solid rgba(0,0,0,0.08);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title {
+        font-size: 28px;
         font-weight: 700;
+        color: var(--text-primary);
+        margin: 0 0 24px 0;
+        padding-bottom: 12px;
+        border-bottom: 3px solid var(--primary-color);
+        display: inline-block;
+        position: relative;
       }
-      .project-desc {
-        margin-top: 6px;
-        line-height: 1.45;
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary-hover);
       }
-      .project-item {
+
+      /* News Section */
+      .news-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .news-item {
+        padding: 16px 20px;
+        margin-bottom: 12px;
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        border-left: 4px solid var(--primary-color);
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-fast);
+        cursor: default;
+      }
+
+      .news-item:hover {
+        transform: translateX(8px);
+        box-shadow: var(--shadow-md);
+        border-left-color: var(--primary-hover);
+      }
+
+      .news-date {
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 14px;
+      }
+
+      /* Projects Section */
+      .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .project-card {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 24px;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-medium);
+        border: 1px solid rgba(0,0,0,0.05);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--primary-color) 0%, var(--accent-purple) 100%);
+        transition: width var(--transition-fast);
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .project-card:hover::before {
+        width: 6px;
+      }
+
+      .project-number {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-size: 48px;
+        font-weight: 800;
+        color: rgba(23, 114, 208, 0.1);
+        line-height: 1;
+      }
+
+      .project-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+        padding-right: 50px;
+      }
+
+      .project-details {
+        display: none;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px dashed rgba(0,0,0,0.1);
+      }
+
+      .project-card.expanded .project-details {
+        display: block;
+        animation: slideDown 0.3s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          max-height: 0;
+        }
+        to {
+          opacity: 1;
+          max-height: 500px;
+        }
+      }
+
+      .project-expand-hint {
+        font-size: 13px;
+        color: var(--text-secondary);
         margin-top: 10px;
-        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
-      .project-indent {
-        margin-top: 6px;
+
+      .project-expand-hint .arrow {
+        transition: transform var(--transition-fast);
+      }
+
+      .project-card.expanded .project-expand-hint .arrow {
+        transform: rotate(180deg);
+      }
+
+      .proj-line {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        line-height: 1.5;
+      }
+
+      .proj-label {
+        font-weight: 700;
+        white-space: nowrap;
+        margin-right: 10px;
+        padding: 2px 10px;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+
+      .lbl-problem { background: rgba(185, 28, 28, 0.1); color: var(--accent-red); }
+      .lbl-details { background: rgba(31, 78, 121, 0.1); color: var(--accent-blue); }
+      .lbl-outcome { background: rgba(31, 122, 61, 0.1); color: var(--accent-green); }
+      .lbl-contrib { background: rgba(107, 33, 168, 0.1); color: var(--accent-purple); }
+
+      .proj-text {
+        flex: 1;
+        color: var(--text-secondary);
+      }
+
+      /* Research Section */
+      .research-focus {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .research-item {
+        background: var(--bg-card);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-fast);
+        border-top: 3px solid var(--primary-color);
+      }
+
+      .research-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .research-item h4 {
+        margin: 0 0 10px 0;
+        color: var(--text-primary);
+        font-size: 16px;
+      }
+
+      .research-item p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      /* Teaching Section */
+      .teaching-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .teaching-card {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-fast);
+      }
+
+      .teaching-card:hover {
+        box-shadow: var(--shadow-md);
+      }
+
+      .teaching-institution {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid rgba(23, 114, 208, 0.2);
+      }
+
+      .teaching-term {
+        margin-bottom: 14px;
+      }
+
+      .teaching-term-title {
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .teaching-courses {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .teaching-courses li {
+        padding: 6px 0 6px 16px;
+        position: relative;
+        font-size: 14px;
+        color: var(--text-secondary);
+      }
+
+      .teaching-courses li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 6px;
+        background: var(--primary-color);
+        border-radius: 50%;
+      }
+
+      /* Publications Section */
+      .publications-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .publication-card {
+        display: flex;
+        gap: 20px;
+        background: var(--bg-highlight);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-fast);
+        flex-wrap: wrap;
+      }
+
+      .publication-card:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateX(4px);
+      }
+
+      .publication-image {
+        flex: 0 0 160px;
+      }
+
+      .publication-image img {
+        width: 160px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .publication-content {
+        flex: 1;
+        min-width: 250px;
+      }
+
+      .publication-title {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        text-decoration: none;
+        display: block;
+        transition: color var(--transition-fast);
+      }
+
+      .publication-title:hover {
+        color: var(--primary-hover);
+      }
+
+      .publication-authors {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+      }
+
+      .publication-venue {
+        font-size: 14px;
+        font-style: italic;
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+      }
+
+      .publication-links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .pub-link {
+        font-size: 13px;
+        color: var(--primary-color);
+        text-decoration: none;
+        padding: 4px 12px;
+        border: 1px solid var(--primary-color);
+        border-radius: 15px;
+        transition: all var(--transition-fast);
+      }
+
+      .pub-link:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .publication-desc {
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--text-secondary);
+        margin-top: 12px;
+      }
+
+      /* Python Packages */
+      .packages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
+      }
+
+      .package-card {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-fast);
+        border-left: 4px solid var(--accent-green);
+      }
+
+      .package-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .package-name {
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+      }
+
+      .package-name a {
+        color: inherit;
+        text-decoration: none;
+        transition: color var(--transition-fast);
+      }
+
+      .package-name a:hover {
+        color: var(--primary-color);
+      }
+
+      .package-desc {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .package-status {
+        display: inline-block;
+        padding: 2px 8px;
+        font-size: 11px;
+        font-weight: 600;
+        border-radius: 10px;
+        margin-left: 8px;
+      }
+
+      .status-active {
+        background: rgba(31, 122, 61, 0.1);
+        color: var(--accent-green);
+      }
+
+      .status-progress {
+        background: rgba(240, 146, 40, 0.1);
+        color: var(--primary-hover);
+      }
+
+      /* Guest Lectures */
+      .lectures-list {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 24px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .lecture-category {
+        margin-bottom: 20px;
+      }
+
+      .lecture-category:last-child {
+        margin-bottom: 0;
+      }
+
+      .lecture-category h4 {
+        color: var(--text-primary);
+        margin: 0 0 12px 0;
+        font-size: 16px;
+      }
+
+      .lecture-item {
+        padding: 10px 0 10px 20px;
+        border-left: 2px solid var(--primary-color);
+        margin-bottom: 10px;
+      }
+
+      .lecture-item:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 30px;
+        background: linear-gradient(135deg, var(--bg-card) 0%, #f8f9ff 100%);
+        border-top: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .footer-credit {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+      }
+
+      .visitors-section {
+        margin: 20px 0;
+      }
+
+      .visitors-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 15px;
+      }
+
+      .copyright {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-top: 20px;
+      }
+
+      /* Scroll to top button */
+      .scroll-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        box-shadow: var(--shadow-md);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-fast);
+        z-index: 1000;
+      }
+
+      .scroll-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .scroll-top:hover {
+        background: var(--primary-hover);
+        transform: translateY(-4px);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-section {
+          flex-direction: column-reverse;
+          text-align: center;
+          padding: 30px 20px;
+        }
+
+        .hero-image {
+          width: 100%;
+        }
+
+        .profile-photo {
+          width: 180px;
+          height: 180px;
+        }
+
+        .name {
+          font-size: 32px;
+        }
+
+        .section {
+          padding: 24px 20px;
+        }
+
+        .nav-links {
+          gap: 4px 8px;
+        }
+
+        .nav-link {
+          padding: 6px 12px;
+          font-size: 13px;
+        }
+
+        .contact-links {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .contact-btn {
+          width: 100%;
+          max-width: 200px;
+          justify-content: center;
+        }
+      }
+
+      /* Typing effect for tagline */
+      .typing-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: var(--accent-purple);
+        margin-left: 4px;
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+
+      /* Skill tags */
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .skill-tag {
+        padding: 4px 12px;
+        background: rgba(23, 114, 208, 0.1);
+        color: var(--primary-color);
+        border-radius: 15px;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all var(--transition-fast);
+      }
+
+      .skill-tag:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: scale(1.05);
       }
     </style>
 
@@ -118,6 +914,9 @@
       ],
       "knowsAbout": [
         "Machine Learning",
+        "Natural Language Processing",
+        "RAG Systems",
+        "Document Processing",
         "Anomaly Detection",
         "Bayesian Modeling",
         "Computer Vision",
@@ -129,781 +928,747 @@
         "value": "0000-0002-2289-2762",
         "url": "https://orcid.org/0000-0002-2289-2762"
       }],
-      "description": "Lead Data Scientist / Machine Learning Engineer building end-to-end analytics and computer vision systems; Adjunct Faculty at UBC focused on anomaly detection, representation learning, and probabilistic modeling."
+      "description": "Lead Data Scientist / Machine Learning Engineer building end-to-end analytics, NLP, and computer vision systems; Adjunct Faculty at UBC focused on anomaly detection, representation learning, and probabilistic modeling."
     }
     </script>
     <!-- End of Structured Data -->
   </head>
 
   <body>
-    <table style="width:100%;max-width:900px;border:10px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;background-color:#f4f4f4;">
-      <tbody>
-        <tr style="padding:0px">
-          <td style="padding:0px">
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr style="padding:0px">
-                  <td style="padding:2.5%;width:63%;vertical-align:middle">
-
-                    <!-- Top navigation (centered, before name) -->
-                    <div class="top-nav">
-                      <a href="#recent-news">Recent News</a>
-                      <a href="#projects">Projects</a>
-                      <a href="#research">Research</a>
-                      <a href="#teaching">Teaching</a>
-                      <a href="#guest-lectures">Guest Lectures</a>
-                      <a href="#publications">Publications</a>
-                      <a href="#python-packages">Software</a>
-                    </div>
-
-                    <div style="text-align:center;">
-                      <p class="name" style="margin:0;">
-                        <b>Asif Ahmed Neloy</b>
-                      </p>
-                      <div class="tagline">
-                        I am actively seeking roles in academia and as a Data Scientist / Machine Learning Engineer / AI Consultant
-                      </div>
-                    </div>
-
-                    <p align="justify">
-                      I am a Lead Data Scientist/MLE with GM Training Arc, Vancouver, BC, where I build player-facing analytics for esports training using gameplay telemetry and video-based computer vision.
-                    </p>
-
-                    <p align="justify">
-                      I am also an Adjunct Faculty member in the Faculty of Land and Food Systems at the
-                      <b><a href="https://mfre.landfood.ubc.ca/faculty">University of British Columbia (UBC)</a></b>.
-                      I teach programming, algorithms, networking, computer vision, databases, machine learning, and analytics.
-                    </p>
-
-                    <p align="justify">
-                      I received an MSc in Computer Science from the University of Manitoba under the supervision of
-                      <a href="https://www.maxturgeon.ca/">Dr. Maxime Turgeon</a> and
-                      <a href="https://cakcora.github.io/">Dr. Cüneyt Akçora</a>.
-                      My thesis studied disentangled VAEs for unsupervised anomaly detection.
-                    </p>
-
-                    <p align="justify">
-                      I work across end-to-end machine learning systems, from data ingestion and feature engineering to training, evaluation, deployment, and monitoring. My day-to-day tools include Python and SQL, deep learning with PyTorch, and production APIs using FastAPI with containerized workflows. I build reproducible pipelines with Airflow and PySpark, work with Snowflake and PostgreSQL for analytics and feature stores, and deliver decision-ready reporting in Power BI or Tableau. I also build and evaluate retrieval-based large language model assistants using embeddings and vector search, with careful logging, quality checks, and guardrails.
-                    </p>
-
-                    <p align="justify">
-                      My research focuses on anomaly detection, representation learning, and probabilistic or Bayesian modeling, with an emphasis on unsupervised methods and reproducibility. I study auto-encoder families and variational formulations for high-dimensional data, and I publish practical comparisons that surface efficiency and trade-offs across model classes. My applied work spans natural language processing, computer vision, and governed analytics in population and health settings.
-                    </p>
-
-                    <p align="justify">
-                      Earlier in my career, I held industry roles across supply planning and forecasting at <b>Advanced Chemical Industries (ACI) Ltd</b>, and portfolio and leasing analytics in real estate at <b>Daris Properties Ltd.</b> and <b>Forum Inc.</b>. I have also contributed to large language model evaluation work, focusing on factuality, safety, and user experience under detailed rubrics.
-                    </p>
-
-                    <p style="text-align:center">
-                      <a href="mailto:neloya@douglascollege.ca">Email</a> &nbsp;/&nbsp;
-                      <a href="data/Asif_Neloy_Resume.pdf">CV</a> &nbsp;/&nbsp;
-                      <a href="data/neloy_bio.txt">Bio</a> &nbsp;/&nbsp;
-                      <a href="https://scholar.google.com/citations?user=WjL1EDcAAAAJ&hl=en">Google Scholar</a> &nbsp;/&nbsp;
-                      <a href="https://github.com/aaneloy">Github</a>
-                    </p>
-                  </td>
-
-                  <td style="padding:2.5%;width:40%;max-width:20%">
-                    <a href="images/asif.jpg">
-                      <img style="width:100%;max-width:100%;height:auto;object-fit:cover;" alt="profile photo" src="images/asif.jpg" class="hoverZoomLink">
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-            <!-- SECTION ORDER: Recent News, Projects, Research, Teaching, Guest, Publications, Software -->
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px;width:100%;vertical-align:middle">
-                    <h2 id="recent-news">Recent News</h2>
-                    <ul>
-                      <li>[August 2025] Led a week long MFRE bootcamp and workshop series on Python and R covering data access, visualization, and coding for economic analysis.</li>
-                      <li>[April 2025] Supervised graduate students in the UBC MFRE <a href="https://mfre.landfood.ubc.ca/summer-program/">Summer Program</a>.</li>
-                      <li>[November 2024] My paper titled "<b>Disentangled Conditional Variational Autoencoder for Unsupervised Anomaly Detection</b>" was accepted at the IEEE Big Data Conference (IEEE BigData 2024), Washington, D.C., December 15-18, 2024. <a href="https://ieeexplore.ieee.org/abstract/document/10825554">IEEE Xplore</a></li>
-                      <li>[July 2024] My paper titled "<b>A Comprehensive Study of Auto-Encoders for Anomaly Detection: Efficiency and Trade-offs</b>" was published in <i>Machine Learning with Applications</i>. <a href="https://www.sciencedirect.com/science/article/pii/S2666827024000483">ScienceDirect</a></li>
-                      <li>[June 2024] Received Research Dissemination Present and Research Dissemination Publish Grant from Douglas College</li>
-                      <li>[December 2023] Joined <b>Douglas College</b>, New Westminster Campus as a <b>Full-time Regular Faculty Member</b>.</li>
-                      <li>[August 2023] Started my new journey as a <b>Faculty</b> Member at the Vancouver Island University.</li>
-                      <li>[May 2023] Promoted to Machine Learning Engineer, Daris Properties Ltd.</li>
-                      <li>[February 2023] Latest published conference paper - <a href="https://doi.org/10.1109/ICDMW58026.2022.00064">Feature Extraction and Prediction of Combined Text and Survey Data using Two-Staged Modeling</a></li>
-                      <li>[January 2023] My MSc dissertation, <a href="https://doi.org/10.1109/ICDMW58026.2022.00064">Dimension Reduction and Anomaly Detection using Unsupervised Machine</a> is now online</li>
-                      <li>[November 2022] Guest Lecture, Introduction to Python and Numpy, STAT 447: Statistical Machine Learning for Data Science, Department of Mathematics and Statistics, University of Saskatchewan</li>
-                      <li>[September 2022] Received Graduate Travel Award from University of Manitoba, NSERC CREATE VADA Program</li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-  <tbody>
-    <tr>
-      <td style="padding:20px;width:100%;vertical-align:middle">
-        <h2 id="projects">Projects</h2>
-
-        <!-- Local styles for Projects only -->
-        <style>
-          .project-item { margin-top: 10px; margin-bottom: 20px; }
-          .project-title { font-weight: 700; }
-
-          /* consistent indent for all project sub-lines */
-          .proj-line { display: flex; align-items: flex-start; margin-top: 6px; line-height: 1.45; }
-          .proj-indent { width: 48px; flex: 0 0 48px; }
-          .proj-label { font-weight: 700; white-space: nowrap; margin-right: 8px; }
-          .proj-text { flex: 1 1 auto; }
-
-          /* color palette that stays readable on light background */
-          .lbl-problem { color: #b91c1c; }   /* muted red */
-          .lbl-details { color: #1f4e79; }   /* deep blue */
-          .lbl-outcome { color: #1f7a3d; }   /* muted green */
-          .lbl-contrib { color: #6b21a8; }   /* muted purple */
-        </style>
-
-        <div class="project-item">
-          <div class="project-title">1. Crosshair and event detection for skill assessment (Training Arc)</div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-problem">Problem statement:</span>
-              Convert raw gameplay video into reliable, frame-level signals so player aim and reaction metrics can be computed consistently across different resolutions, HUD settings, and frame rates.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-details">Project details:</span>
-              Built a computer-vision pipeline to extract frames, detect crosshair and targets, track events over time, and compute stable reaction and correction metrics. Implemented model inference with YOLO-style detectors, lightweight tracking, and robust timestamp alignment to prevent drift. Packaged the workflow as reproducible scripts with config-driven runs and structured JSONL outputs for downstream analytics.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-outcome">Results/outcome:</span>
-              Enabled repeatable measurement of aim stability, first-shot reaction, and correction behavior from VODs, producing clean artifacts that can be used for benchmarking players and validating training interventions.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-contrib">My contributions:</span>
-              I owned the end-to-end design and implementation, including data layout, frame timebase logic, detection and tracking integration, metric definitions, and export formats. I validated failure modes across clips and added guardrails for edge cases (missing HUD, occlusion, and partial visibility).
-            </div>
-          </div>
+    <div class="main-container">
+      <!-- Navigation -->
+      <nav class="top-nav">
+        <div class="nav-links">
+          <a href="#recent-news" class="nav-link">Recent News</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#research" class="nav-link">Research</a>
+          <a href="#teaching" class="nav-link">Teaching</a>
+          <a href="#guest-lectures" class="nav-link">Guest Lectures</a>
+          <a href="#publications" class="nav-link">Publications</a>
+          <a href="#python-packages" class="nav-link">Software</a>
         </div>
+      </nav>
 
-        <div class="project-item">
-          <div class="project-title">2. Streaming integrity-aware recommendation engine (ranking service)</div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-problem">Problem statement:</span>
-              Rank candidates reliably under noisy and incomplete signals while keeping latency low enough for real-time product use and maintaining predictable behavior under distribution shifts.
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="name-title">
+            <h1 class="name">Asif Ahmed Neloy</h1>
+            <div class="tagline">
+              I am actively seeking roles in academia and as a Data Scientist / Machine Learning Engineer / AI Consultant
             </div>
           </div>
 
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-details">Project details:</span>
-              Designed a ranking pipeline using gradient-boosted models and embedding features, served through a FastAPI layer with caching and feature hydration. Implemented an offline replay framework for consistent evaluation (NDCG, precision at k) and added monitoring hooks to detect drift in top features. Deployed containerized services and data stores to support scalable inference.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-outcome">Results/outcome:</span>
-              Delivered a stable, low-latency ranking API that improved offline ranking quality and reduced operational friction through automated evaluation and monitoring.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-contrib">My contributions:</span>
-              I led the model and system design, built the evaluation harness, implemented the serving stack, and set up the deployment workflow. I drove the success-metric alignment and maintained a regression suite to prevent silent quality drops.
-            </div>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-title">3. Lifecycle analytics: churn prediction and intervention prioritization</div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-problem">Problem statement:</span>
-              Identify at-risk users early and prioritize interventions with interpretable drivers so retention actions can be targeted and measurable, not generic.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-details">Project details:</span>
-              Built churn models on product usage, engagement, and subscription signals with a feature pipeline that supports backtesting and leakage checks. Added explainability with SHAP for driver analysis and delivered a scoring workflow that ranks users for outreach and experimentation. Implemented periodic recalibration and monitoring dashboards to keep performance stable over time.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-outcome">Results/outcome:</span>
-              Produced a repeatable churn and prioritization workflow that improved decision quality for retention targeting and reduced manual review overhead through ranked, explainable outputs.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-contrib">My contributions:</span>
-              I owned the modeling lifecycle (data preparation, feature engineering, training, thresholding strategy, and explainability outputs). I also set up monitoring and documented playbooks for retraining and governance so the system stays operational after handoff.
-            </div>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-title">4. Experimentation and KPI layer for product analytics</div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-problem">Problem statement:</span>
-              Eliminate inconsistent metric definitions and slow reporting cycles that lead to rework, misalignment, and low trust in business dashboards.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-details">Project details:</span>
-              Implemented a standardized KPI layer and A/B analysis workflow backed by a warehouse-first approach, with Python-based transformation and validation checks. Built executive dashboards in Power BI and automated scheduled refresh, metric documentation, and alerting for anomalies. Added data-quality gates to catch schema breaks and missing partitions before stakeholders see incorrect numbers.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-outcome">Results/outcome:</span>
-              Reduced reporting friction and created a single source of truth for KPIs and experimentation readouts, improving dashboard reliability and stakeholder alignment.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-contrib">My contributions:</span>
-              I led metric standardization end to end, built the transformation and validation layer, implemented the dashboards, and introduced automated checks and documentation to keep the system maintainable.
-            </div>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-title">5. Retrieval Q&amp;A assistant and rubric-driven evaluation harness</div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-problem">Problem statement:</span>
-              Teams needed fast, grounded answers from internal documents, plus a way to measure language model quality and regressions under clear evaluation criteria.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-details">Project details:</span>
-              Built a retrieval-based assistant using embeddings and vector search, wrapped in an API with structured logging and citation-style output so responses are auditable. Implemented a rubric-driven evaluation harness with test suites, edge-case probes, and regression tracking across prompt variants. Added guardrails to detect unsafe or unsupported completions and route uncertain cases to human review.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-outcome">Results/outcome:</span>
-              Enabled reliable internal Q&amp;A with traceability, and introduced a measurable evaluation loop that supports iteration without quality drift.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-contrib">My contributions:</span>
-              I designed the retrieval pipeline, implemented the service layer and logging, and built the evaluation framework end to end. I defined rubric interpretations and drove regression strategy so quality stays stable as prompts and models change.
-            </div>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-title">6. Disentangled Conditional Variational Autoencoder (DCVAE) for unsupervised anomaly detection</div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-problem">Problem statement:</span>
-              Standard autoencoders often learn entangled latent factors, making anomaly scoring less interpretable and less robust across datasets with complex structure.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-details">Project details:</span>
-              Implemented a PyTorch-based DCVAE that combines conditional structure with disentanglement objectives, including total-correlation regularization. Built a reproducible training and evaluation pipeline, ran qualitative and quantitative studies, and packaged code and experiments for repeatability. Reported performance across benchmark datasets with consistent splits and hyperparameter controls.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-outcome">Results/outcome:</span>
-              Produced stronger, more interpretable latent representations for anomaly scoring and validated the approach through benchmarking and publication artifacts.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-contrib">My contributions:</span>
-              I led the research implementation, experimental design, ablations, and reproducibility packaging. I wrote the core training and evaluation codepaths and maintained the repo for release-ready usage.
-            </div>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-title">7. Autoencoder benchmark suite for anomaly detection</div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-problem">Problem statement:</span>
-              Published anomaly detection comparisons are often hard to reproduce due to inconsistent training setups, missing baselines, and unclear evaluation choices.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-details">Project details:</span>
-              Built a benchmark suite comparing multiple autoencoder families under consistent training budgets and evaluation protocols. Standardized datasets, metrics, and reporting, and added scripts for reconstruction analysis, sampling behavior, latent visualization, and downstream classification. Packaged experiments so results can be rerun with minimal setup and consistent outputs.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-outcome">Results/outcome:</span>
-              Delivered a reproducible comparison framework that surfaces practical trade-offs across architectures and supports fair benchmarking for future work.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-contrib">My contributions:</span>
-              I designed the evaluation protocol, implemented the training and reporting pipelines, built the visualization and analysis scripts, and curated reproducibility artifacts so results can be rerun consistently.
-            </div>
-          </div>
-        </div>
-
-        <div class="project-item" style="margin-bottom:0;">
-          <div class="project-title">8. Autonomous robotics perception and navigation</div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-problem">Problem statement:</span>
-              Build reliable perception modules that support navigation and obstacle avoidance in cluttered environments where sensing is noisy and compute budgets are limited.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-details">Project details:</span>
-              Integrated onboard vision sensors with detection and navigation logic for field robotics, including lane and obstacle detection components and basic localization support. Implemented perception modules that run within constrained resources and validated system behavior through iterative testing and documented experiments for publication and demos.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-outcome">Results/outcome:</span>
-              Enabled stable perception-driven navigation for prototype robots and produced publishable results demonstrating practical operation in real scenarios.
-            </div>
-          </div>
-
-          <div class="proj-line">
-            <div class="proj-indent"></div>
-            <div class="proj-text">
-              <span class="proj-label lbl-contrib">My contributions:</span>
-              I implemented core computer vision components, integrated perception outputs into navigation control loops, and drove testing and debugging in real runs. I contributed to documentation and experiment reporting for dissemination.
-            </div>
-          </div>
-        </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
-            <hr>
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px;width:100%;vertical-align:middle">
-                    <h2 id="research">Research</h2>
-                    <p>
-                      My work centers on anomaly detection, representation learning, and probabilistic or Bayesian modeling, with an emphasis on unsupervised methods and reproducibility. I study auto-encoder families and variational formulations for high-dimensional data, build governed analytics for population health settings, and publish practical comparisons that surface efficiency and trade-offs across model classes.
-                    </p>
-
-                    <ul>
-                      <li><b>Unsupervised anomaly detection and generative modeling.</b> Disentanglement in latent spaces, total-correlation objectives, and conditional VAEs for detecting rare structure in image and tabular data.</li>
-                      <li><b>Representation learning and evaluation.</b> Comparative studies of auto-encoder architectures that quantify reconstruction quality, sampling behavior, latent visualization, and classification accuracy under consistent training setups.</li>
-                      <li><b>Applied health analytics.</b> Population-scale modeling with governance, documentation, and repeatable pipelines as part of the NSERC CREATE VADA program.</li>
-                      <li><b>Earlier lines.</b> Robotics, recommender systems, and computer vision, including mobile platforms and domain-specific recommenders.</li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px;width:100%;vertical-align:middle">
-                    <h2 id="teaching">Teaching</h2>
-                    <ul class="teaching-list">
-                      <li>
-                        <b>University of British Columbia</b>
-                        <br>
-                        <ul>
-                          <li>
-                            <b>Fall 2025:</b>
-                            <ul>
-                              <li>FRE 501: Topics in Food Market Analysis (Co-instructor)</li>
-                            </ul>
-                          </li>
-                          <li>
-                            <b>Winter 2025:</b>
-                            <ul>
-                              <li>FRE 521D: <a href="https://github.com/aaneloy/FRE521D-Winter2025_UBC">Data Analytics in Climate, Food and Environment</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li>
-                        <b>Douglas College</b>
-                        <br>
-                        <ul>
-                          <li>
-                            <b>Summer 2025:</b>
-                            <ul>
-                              <li>CSIS 3300: Database II</li>
-                              <li>CSIS 3360: Fundamentals of Data Analytics</li>
-                              <li>CSIS 4260: Special Topics in Data Analytics</li>
-                            </ul>
-                          </li>
-                          <li>
-                            <b>Winter 2025:</b>
-                            <ul>
-                              <li>CSIS 1175: Introduction to Programming I</li>
-                              <li>CSIS 2200: Systems Analysis &amp; Design</li>
-                              <li>CSIS 3860: Data Visualization</li>
-                            </ul>
-                          </li>
-                          <li>
-                            <b>Summer 2024:</b>
-                            <ul>
-                              <li>CSIS 2300: Database I</li>
-                              <li>CSIS 3300: Database II</li>
-                              <li>CSIS 3360: Fundamentals of Data Analytics</li>
-                            </ul>
-                          </li>
-                          <li>
-                            <b>Winter 2024:</b>
-                            <ul>
-                              <li>CSIS 2200: Systems Analysis &amp; Design</li>
-                              <li>CSIS 2300: Database I</li>
-                              <li>CSIS 3290: <a href="https://github.com/aaneloy/CSIS-3290-Fundamentals-of-Machine-Learning-in-Data-Science">Fundamentals of Machine Learning in Data Science</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li>
-                        <b>Vancouver Island University</b>
-                        <br>
-                        <ul>
-                          <li>
-                            <b>Fall 2023:</b>
-                            <ul>
-                              <li>CSCI 251: Systems and Networks</li>
-                              <li>CSCI 159: Computer Science I</li>
-                              <li>CSCI 112: Applications Programming</li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li>
-                        <b>University of Manitoba</b>
-                        <br>
-                        <ul>
-                          <li>
-                            <b>Winter 2023:</b>
-                            <ul>
-                              <li>DATA 2010: Tools and Techniques for Data Science</li>
-                            </ul>
-                          </li>
-                          <li>
-                            <b>Fall 2022:</b>
-                            <ul>
-                              <li>COMP 3490: Computer Graphics 1</li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px;width:100%;vertical-align:middle">
-                    <h2 id="guest-lectures">Guest Lectures and Seminar Presentations</h2>
-                    <ul>
-                      <li>
-                        <b>Invited Sessions:</b>
-                        <ul>
-                          <li>
-                            <a href="https://icsa-canada-chapter.org/symposium2022/">ICSA-Canada Chapter 2022 Symposium</a>, Banff Center, Banff, Alberta, Canada.
-                            <br>
-                            <em>Topic:</em> Auto-encoders for Anomaly Detection: Efficiency and Trade-Offs.
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li>
-                        <b>Lectures:</b>
-                        <ul>
-                          <li>
-                            <a href="https://github.com/aaneloy/Workshop-on-Machine-Learning-2018">Introduction to Machine Learning</a>, North South University, Dhaka, Bangladesh.
-                          </li>
-                          <li>
-                            <b>Courses:</b> <a href="https://usask.instructure.com/courses/43914/assignments/syllabus">STAT 447: Statistical Machine Learning for Data Science</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px;width:100%;vertical-align:middle">
-                    <h2 id="publications">Publications</h2>
-                    <p style="text-align:center;margin:0;">
-                      See my Google Scholar profile for the <a href="https://scholar.google.com/citations?user=WjL1EDcAAAAJ">most recent publications</a>.
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-              <tr bgcolor="#ffffd0">
-                <td width="25%">
-                  <div class="one">
-                    <img src="images/dcvae.png" width="200" alt="dcvae">
-                  </div>
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://github.com/UMDimReduction/Disentangled-Conditional-Variational-Autoencoder" target="_blank">
-                    <span class="papertitle">Disentangled Conditional Variational Autoencoder for Unsupervised Anomaly Detection</span>
-                  </a>
-                  <br>
-                  <a href="https://aaneloy.github.io/"><strong>Asif Ahmed Neloy</strong>*</a>,
-                  <a href="https://www.maxturgeon.ca/">Maxime Turgeon</a>,
-                  <br>
-                  <em>Published at the 2024 IEEE International Conference on Big Data (IEEE BigData 2024)</em>, 2024
-                  <br>
-                  <a href="https://github.com/aaneloy/IEEE_BigData2024_dcvae">GitHub Repo</a>
-                  /
-                  <a href="https://ieeexplore.ieee.org/abstract/document/10825554">Publication</a>
-                  <p>
-                    Generative models have recently become an effective approach for anomaly detection by leveraging auto-encoders to model high-dimensional data and identify anomalies based on reconstruction quality. However, a primary challenge in unsupervised anomaly detection (UAD) lies in learning meaningful, disentangled features without losing essential information. In this paper, we introduce a novel generative architecture that combines the frameworks of β-VAE, Conditional Variational Auto-encoder (CVAE), and the principle of total correlation (TC) to enhance feature disentanglement and retain critical information. Our approach improves the separation of latent features, optimizes TC loss more effectively, and enhances the detection of anomalies in complex, high-dimensional datasets such as image data. Through extensive qualitative and quantitative evaluations in benchmark datasets, we demonstrate that our method not only achieves strong performance in anomaly detection but also captures interpretable, disentangled representations, highlighting the importance of feature disentanglement in advancing UAD.
-                  </p>
-                </td>
-              </tr>
-
-              <tr bgcolor="#ffffd0">
-                <td width="25%">
-                  <div class="one">
-                    <img src="images/mlwa.png" width="200" alt="mlwa">
-                  </div>
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://doi.org/10.1016/j.mlwa.2024.100572" target="_blank">
-                    <span class="papertitle">A comprehensive study of auto-encoders for anomaly detection: Efficiency and trade-offs</span>
-                  </a>
-                  <br>
-                  <a href="https://aaneloy.github.io/"><strong>Asif Ahmed Neloy</strong>*</a>,
-                  <a href="https://www.maxturgeon.ca/">Maxime Turgeon</a>,
-                  <br>
-                  <em>Machine Learning with Applications</em>, 2024
-                  <br>
-                  <a href="https://github.com/UMDimReduction/autoencoder-Efficiency_vs_Tradeoffs">project page</a>
-                  /
-                  <a href="https://doi.org/10.1016/j.mlwa.2024.100572">DOI Link</a>
-                  <p>
-                    Unsupervised anomaly detection (UAD) is a diverse research area explored across various application domains. Over time, numerous anomaly detection techniques, including clustering, generative, and variational inference-based methods, are developed to address specific drawbacks and advance state-of-the-art techniques. Deep learning and generative models recently played a significant role in identifying unique challenges and devising advanced approaches. Auto-encoders (AEs) represent one such powerful technique that combines generative and probabilistic variational modeling with deep architecture. This study systematically reviews 11 Auto-Encoder architectures categorized into three groups, aiming to differentiate their reconstruction ability, sample generation, latent space visualization, and accuracy in classifying anomalous data using the Fashion-MNIST (FMNIST) and MNIST datasets. We conclude by analyzing the experimental results, which guide us in identifying the efficiency and trade-offs among auto-encoders.
-                  </p>
-                </td>
-              </tr>
-
-              <tr bgcolor="#ffffd0">
-                <td width="25%">
-                  <div class="one">
-                    <img src="images/icdm.png" width="200" alt="icdm">
-                  </div>
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://www.computer.org/csdl/proceedings-article/icdmw/2022/460900a435/1KBqUqu7I7S" target="_blank">
-                    <span class="papertitle">Feature Extraction and Prediction of Combined Text and Survey Data using Two-Staged Modeling</span>
-                  </a>
-                  <br>
-                  <a href="https://aaneloy.github.io/"><strong>Asif Ahmed Neloy</strong>*</a>,
-                  <a href="https://www.maxturgeon.ca/">Maxime Turgeon</a>,
-                  <br>
-                  <em>ICDM</em>, 2022
-                  <br>
-                  <a href="https://github.com/aaneloy/ICDM2022">project page</a>
-                  /
-                  <a href="https://ieeexplore.ieee.org/abstract/document/10031068">IEEE</a>
-                  <p>
-                    This work introduces a two-stage modeling approach to combine classical statistical analysis with NLP problems in a real-world dataset. We layout a combination of a stacked ensemble classifier and a deep learning framework using convolutional neural networks and bidirectional recurrent neural networks to structure a decomposed architecture with lower computational complexity, followed by ablation and validation experiments.
-                  </p>
-                </td>
-              </tr>
-
-              <tr bgcolor="#ffffd0">
-                <td width="25%">
-                  <div class="one">
-                    <img src="images/icmlc.png" width="200" alt="icmlc">
-                  </div>
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://dl.acm.org/doi/abs/10.1145/3318299.3318377" target="_blank">
-                    <span class="papertitle">Ensemble learning based rental apartment price prediction model by categorical features factoring</span>
-                  </a>
-                  <br>
-                  <a href="https://aaneloy.github.io/"><strong>Asif Ahmed Neloy</strong>*</a>,
-                  <a href="">HM Sadman Haque</a>,
-                  <a href="">Md Mahmud Ul Islam</a>,
-                  <br>
-                  <em>ICMLC</em>, 2021
-                  <br>
-                  <a href="https://dl.acm.org/doi/abs/10.1145/3318299.3318377">ACM ICMLC</a>
-                  <p>
-                    We study apartment rental price prediction using categorical feature factoring and ensemble learning. The work compares tree-based and boosting methods, stacked ensembles, and regularized regression baselines, and reports model behavior across feature groups that drive rental price outcomes.
-                  </p>
-                </td>
-              </tr>
-            </table>
-
-            <hr>
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px;width:100%;vertical-align:middle">
-                    <h2 id="python-packages">Python Packages</h2>
-                    <ul>
-                      <li>
-                        <a href="https://pypi.org/project/DataScalerSelector/"><b>Data Scaler Selector</b></a>: Data Scaler is an open-source python library to select the appropriate data scaler for your Machine Learning model.
-                      </li>
-                      <li>
-                        <a href="https://pypi.org/project/ImagetoSketch/"><b>Image to Sketch</b></a>: Python open-source library to convert color or B&amp;W image to pencil sketch.
-                      </li>
-                      <li>
-                        <b>Data Preparer (In Progress):</b> Data Preparer is an open-source Python package to clean and prepare your dataset before applying a machine learning model.
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:0px">
-                    <br>
-                    <p style="text-align:right;font-size:small;">
-                      Template credit-<a href="https://jonbarron.info/">Jon Barron</a>!<br>
-                      Last updated: <span id="lastUpdated">October 20, 2025</span>.
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-            <!-- Visitors stays at the bottom only -->
-            <h3 id="visitors" style="text-align:center">Visitors</h3>
-
-            <div style="text-align:center; margin:10px 0;">
-              <div id="visitors-map" style="display:inline-block;width:120px;height:100px;overflow:hidden;">
-                <script type="text/javascript" id="clstr_globe"
-                        src="https://clustrmaps.com/globe.js?d=kJ1-l2PAoZk5tCK1gzdI3GkqmAJxXnop_koxwXRsXIg">
-                </script>
-
-                <noscript>
-                  <img alt="Visitor map"
-                       src="https://www.clustrmaps.com/map_v2.png?d=kJ1-l2PAoZk5tCK1gzdI3GkqmAJxXnop_koxwXRsXIg&cl=ffffff"
-                       style="width:220px;height:auto;border-radius:6px;">
-                </noscript>
-              </div>
-            </div>
-
-            <p style="text-align:center; margin-top:20px;">
-              &copy; 2025 Asif. All rights reserved.
+          <div class="bio-text">
+            <p>
+              I am a Lead Data Scientist/MLE with GM Training Arc, Vancouver, BC, where I build player-facing analytics for esports training using gameplay telemetry and video-based computer vision.
             </p>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <p>
+              I am also an Adjunct Faculty member in the Faculty of Land and Food Systems at the
+              <b><a href="https://mfre.landfood.ubc.ca/faculty">University of British Columbia (UBC)</a></b>.
+              I teach programming, algorithms, networking, computer vision, databases, machine learning, and analytics.
+            </p>
+
+            <p>
+              I received an MSc in Computer Science from the University of Manitoba under the supervision of
+              <a href="https://www.maxturgeon.ca/">Dr. Maxime Turgeon</a> and
+              <a href="https://cakcora.github.io/">Dr. Cuneyt Akcora</a>.
+              My thesis studied disentangled VAEs for unsupervised anomaly detection.
+            </p>
+
+            <p>
+              I work across end-to-end machine learning systems, from data ingestion and feature engineering to training, evaluation, deployment, and monitoring. My day-to-day tools include Python and SQL, deep learning with PyTorch, and production APIs using FastAPI with containerized workflows. I build reproducible pipelines with Airflow and PySpark, work with Snowflake and PostgreSQL for analytics and feature stores, and deliver decision-ready reporting in Power BI or Tableau. I also build and evaluate retrieval-based large language model assistants using embeddings and vector search, with careful logging, quality checks, and guardrails.
+            </p>
+
+            <p>
+              My research focuses on anomaly detection, representation learning, and probabilistic or Bayesian modeling, with an emphasis on unsupervised methods and reproducibility. I study auto-encoder families and variational formulations for high-dimensional data, and I publish practical comparisons that surface efficiency and trade-offs across model classes. My applied work spans natural language processing, computer vision, and governed analytics in population and health settings.
+            </p>
+
+            <p>
+              Earlier in my career, I held industry roles across supply planning and forecasting at <b>Advanced Chemical Industries (ACI) Ltd</b>, and portfolio and leasing analytics in real estate at <b>Daris Properties Ltd.</b> and <b>Forum Inc.</b>. I have also contributed to large language model evaluation work, focusing on factuality, safety, and user experience under detailed rubrics.
+            </p>
+          </div>
+
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">NLP</span>
+            <span class="skill-tag">RAG</span>
+            <span class="skill-tag">Computer Vision</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">LLM</span>
+          </div>
+
+          <div class="contact-links">
+            <a href="mailto:neloya@douglascollege.ca" class="contact-btn">Email</a>
+            <a href="data/Asif_Neloy_Resume.pdf" class="contact-btn">CV</a>
+            <a href="data/neloy_bio.txt" class="contact-btn">Bio</a>
+            <a href="https://scholar.google.com/citations?user=WjL1EDcAAAAJ&hl=en" class="contact-btn">Scholar</a>
+            <a href="https://github.com/aaneloy" class="contact-btn">GitHub</a>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <a href="images/asif.jpg">
+            <img src="images/asif.jpg" alt="Asif Ahmed Neloy" class="profile-photo">
+          </a>
+        </div>
+      </section>
+
+      <!-- Recent News Section -->
+      <section class="section" id="recent-news">
+        <h2 class="section-title">Recent News</h2>
+        <ul class="news-list">
+          <li class="news-item">
+            <span class="news-date">[August 2025]</span> Led a week long MFRE bootcamp and workshop series on Python and R covering data access, visualization, and coding for economic analysis.
+          </li>
+          <li class="news-item">
+            <span class="news-date">[April 2025]</span> Supervised graduate students in the UBC MFRE <a href="https://mfre.landfood.ubc.ca/summer-program/">Summer Program</a>.
+          </li>
+          <li class="news-item">
+            <span class="news-date">[November 2024]</span> My paper titled "<b>Disentangled Conditional Variational Autoencoder for Unsupervised Anomaly Detection</b>" was accepted at the IEEE Big Data Conference (IEEE BigData 2024), Washington, D.C., December 15-18, 2024. <a href="https://ieeexplore.ieee.org/abstract/document/10825554">IEEE Xplore</a>
+          </li>
+          <li class="news-item">
+            <span class="news-date">[July 2024]</span> My paper titled "<b>A Comprehensive Study of Auto-Encoders for Anomaly Detection: Efficiency and Trade-offs</b>" was published in <i>Machine Learning with Applications</i>. <a href="https://www.sciencedirect.com/science/article/pii/S2666827024000483">ScienceDirect</a>
+          </li>
+          <li class="news-item">
+            <span class="news-date">[June 2024]</span> Received Research Dissemination Present and Research Dissemination Publish Grant from Douglas College
+          </li>
+          <li class="news-item">
+            <span class="news-date">[December 2023]</span> Joined <b>Douglas College</b>, New Westminster Campus as a <b>Full-time Regular Faculty Member</b>.
+          </li>
+          <li class="news-item">
+            <span class="news-date">[August 2023]</span> Started my new journey as a <b>Faculty</b> Member at the Vancouver Island University.
+          </li>
+          <li class="news-item">
+            <span class="news-date">[May 2023]</span> Promoted to Machine Learning Engineer, Daris Properties Ltd.
+          </li>
+          <li class="news-item">
+            <span class="news-date">[February 2023]</span> Latest published conference paper - <a href="https://doi.org/10.1109/ICDMW58026.2022.00064">Feature Extraction and Prediction of Combined Text and Survey Data using Two-Staged Modeling</a>
+          </li>
+          <li class="news-item">
+            <span class="news-date">[January 2023]</span> My MSc dissertation, <a href="https://doi.org/10.1109/ICDMW58026.2022.00064">Dimension Reduction and Anomaly Detection using Unsupervised Machine</a> is now online
+          </li>
+          <li class="news-item">
+            <span class="news-date">[November 2022]</span> Guest Lecture, Introduction to Python and Numpy, STAT 447: Statistical Machine Learning for Data Science, Department of Mathematics and Statistics, University of Saskatchewan
+          </li>
+          <li class="news-item">
+            <span class="news-date">[September 2022]</span> Received Graduate Travel Award from University of Manitoba, NSERC CREATE VADA Program
+          </li>
+        </ul>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="section" id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+
+          <!-- Project 1 -->
+          <div class="project-card" onclick="toggleProject(this)">
+            <span class="project-number">01</span>
+            <div class="project-title">Crosshair and Event Detection for Skill Assessment (Training Arc)</div>
+            <div class="project-expand-hint">
+              <span class="arrow">&#9660;</span> Click to expand details
+            </div>
+            <div class="project-details">
+              <div class="proj-line">
+                <span class="proj-label lbl-problem">Problem</span>
+                <span class="proj-text">Convert raw gameplay video into reliable, frame-level signals so player aim and reaction metrics can be computed consistently across different resolutions, HUD settings, and frame rates.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-details">Details</span>
+                <span class="proj-text">Built a computer-vision pipeline to extract frames, detect crosshair and targets, track events over time, and compute stable reaction and correction metrics. Implemented model inference with YOLO-style detectors, lightweight tracking, and robust timestamp alignment to prevent drift. Packaged the workflow as reproducible scripts with config-driven runs and structured JSONL outputs for downstream analytics.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-outcome">Outcome</span>
+                <span class="proj-text">Enabled repeatable measurement of aim stability, first-shot reaction, and correction behavior from VODs, producing clean artifacts that can be used for benchmarking players and validating training interventions.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-contrib">Role</span>
+                <span class="proj-text">I owned the end-to-end design and implementation, including data layout, frame timebase logic, detection and tracking integration, metric definitions, and export formats. I validated failure modes across clips and added guardrails for edge cases (missing HUD, occlusion, and partial visibility).</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card" onclick="toggleProject(this)">
+            <span class="project-number">02</span>
+            <div class="project-title">Intelligent Document Processing and OCR Pipeline</div>
+            <div class="project-expand-hint">
+              <span class="arrow">&#9660;</span> Click to expand details
+            </div>
+            <div class="project-details">
+              <div class="proj-line">
+                <span class="proj-label lbl-problem">Problem</span>
+                <span class="proj-text">Organizations deal with heterogeneous document formats (PDFs, scanned images, handwritten forms) requiring automated extraction and structuring of key information for downstream processing and analytics.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-details">Details</span>
+                <span class="proj-text">Developed an end-to-end document processing pipeline combining OCR engines (Tesseract, EasyOCR) with layout analysis and named entity recognition. Implemented preprocessing steps for deskewing, denoising, and contrast enhancement. Built structured output schemas for invoices, forms, and contracts with field-level confidence scoring. Integrated with vector stores for semantic search across extracted content.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-outcome">Outcome</span>
+                <span class="proj-text">Reduced manual data entry time significantly while maintaining high extraction accuracy. Enabled searchable document archives with semantic retrieval capabilities and automated compliance checking workflows.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-contrib">Role</span>
+                <span class="proj-text">Designed the pipeline architecture, selected and fine-tuned OCR models, implemented post-processing logic for entity extraction, and built the API layer for integration with existing document management systems.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card" onclick="toggleProject(this)">
+            <span class="project-number">03</span>
+            <div class="project-title">Enterprise RAG System with Multi-Source Knowledge Integration</div>
+            <div class="project-expand-hint">
+              <span class="arrow">&#9660;</span> Click to expand details
+            </div>
+            <div class="project-details">
+              <div class="proj-line">
+                <span class="proj-label lbl-problem">Problem</span>
+                <span class="proj-text">Enterprise knowledge is scattered across wikis, documents, databases, and code repositories, making it difficult for teams to find accurate, contextual answers without extensive manual search.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-details">Details</span>
+                <span class="proj-text">Built a production-grade RAG (Retrieval-Augmented Generation) system with multi-source connectors for Confluence, SharePoint, GitHub, and internal databases. Implemented hybrid search combining dense embeddings (sentence-transformers) with sparse BM25 retrieval. Designed chunking strategies optimized for different content types. Added re-ranking with cross-encoders and citation generation for traceability. Deployed with FastAPI, Redis caching, and comprehensive logging for quality monitoring.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-outcome">Outcome</span>
+                <span class="proj-text">Delivered a reliable internal Q&A system with grounded, auditable responses. Reduced time-to-answer for common queries while maintaining high factual accuracy through retrieval-based grounding.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-contrib">Role</span>
+                <span class="proj-text">Architected the retrieval pipeline, implemented embedding and indexing strategies, built the API service layer, and designed the evaluation framework for measuring retrieval quality and answer accuracy.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card" onclick="toggleProject(this)">
+            <span class="project-number">04</span>
+            <div class="project-title">NLP Pipeline for Multi-Domain Text Classification and Sentiment Analysis</div>
+            <div class="project-expand-hint">
+              <span class="arrow">&#9660;</span> Click to expand details
+            </div>
+            <div class="project-details">
+              <div class="proj-line">
+                <span class="proj-label lbl-problem">Problem</span>
+                <span class="proj-text">Unstructured text data from customer feedback, support tickets, and surveys contains valuable insights but requires scalable, accurate classification and sentiment extraction to be actionable.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-details">Details</span>
+                <span class="proj-text">Developed a modular NLP pipeline supporting multi-label text classification, aspect-based sentiment analysis, and topic modeling. Fine-tuned transformer models (BERT, RoBERTa) for domain-specific classification tasks. Implemented active learning workflows to efficiently expand training data. Built preprocessing modules for text cleaning, language detection, and PII redaction. Deployed as microservices with batch and real-time inference capabilities.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-outcome">Outcome</span>
+                <span class="proj-text">Enabled automated routing of support tickets, real-time sentiment monitoring dashboards, and trend analysis across customer feedback channels. Improved response time and customer satisfaction metrics.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-contrib">Role</span>
+                <span class="proj-text">Led model development and fine-tuning, designed the annotation guidelines and active learning strategy, implemented the inference pipeline, and built monitoring dashboards for model performance tracking.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="project-card" onclick="toggleProject(this)">
+            <span class="project-number">05</span>
+            <div class="project-title">Streaming Integrity-Aware Recommendation Engine</div>
+            <div class="project-expand-hint">
+              <span class="arrow">&#9660;</span> Click to expand details
+            </div>
+            <div class="project-details">
+              <div class="proj-line">
+                <span class="proj-label lbl-problem">Problem</span>
+                <span class="proj-text">Rank candidates reliably under noisy and incomplete signals while keeping latency low enough for real-time product use and maintaining predictable behavior under distribution shifts.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-details">Details</span>
+                <span class="proj-text">Designed a ranking pipeline using gradient-boosted models and embedding features, served through a FastAPI layer with caching and feature hydration. Implemented an offline replay framework for consistent evaluation (NDCG, precision at k) and added monitoring hooks to detect drift in top features. Deployed containerized services and data stores to support scalable inference.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-outcome">Outcome</span>
+                <span class="proj-text">Delivered a stable, low-latency ranking API that improved offline ranking quality and reduced operational friction through automated evaluation and monitoring.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-contrib">Role</span>
+                <span class="proj-text">I led the model and system design, built the evaluation harness, implemented the serving stack, and set up the deployment workflow. I drove the success-metric alignment and maintained a regression suite to prevent silent quality drops.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="project-card" onclick="toggleProject(this)">
+            <span class="project-number">06</span>
+            <div class="project-title">Lifecycle Analytics: Churn Prediction and Intervention Prioritization</div>
+            <div class="project-expand-hint">
+              <span class="arrow">&#9660;</span> Click to expand details
+            </div>
+            <div class="project-details">
+              <div class="proj-line">
+                <span class="proj-label lbl-problem">Problem</span>
+                <span class="proj-text">Identify at-risk users early and prioritize interventions with interpretable drivers so retention actions can be targeted and measurable, not generic.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-details">Details</span>
+                <span class="proj-text">Built churn models on product usage, engagement, and subscription signals with a feature pipeline that supports backtesting and leakage checks. Added explainability with SHAP for driver analysis and delivered a scoring workflow that ranks users for outreach and experimentation. Implemented periodic recalibration and monitoring dashboards to keep performance stable over time.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-outcome">Outcome</span>
+                <span class="proj-text">Produced a repeatable churn and prioritization workflow that improved decision quality for retention targeting and reduced manual review overhead through ranked, explainable outputs.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-contrib">Role</span>
+                <span class="proj-text">I owned the modeling lifecycle (data preparation, feature engineering, training, thresholding strategy, and explainability outputs). I also set up monitoring and documented playbooks for retraining and governance so the system stays operational after handoff.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 7 -->
+          <div class="project-card" onclick="toggleProject(this)">
+            <span class="project-number">07</span>
+            <div class="project-title">Retrieval Q&A Assistant with Rubric-Driven Evaluation</div>
+            <div class="project-expand-hint">
+              <span class="arrow">&#9660;</span> Click to expand details
+            </div>
+            <div class="project-details">
+              <div class="proj-line">
+                <span class="proj-label lbl-problem">Problem</span>
+                <span class="proj-text">Teams needed fast, grounded answers from internal documents, plus a way to measure language model quality and regressions under clear evaluation criteria.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-details">Details</span>
+                <span class="proj-text">Built a retrieval-based assistant using embeddings and vector search, wrapped in an API with structured logging and citation-style output so responses are auditable. Implemented a rubric-driven evaluation harness with test suites, edge-case probes, and regression tracking across prompt variants. Added guardrails to detect unsafe or unsupported completions and route uncertain cases to human review.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-outcome">Outcome</span>
+                <span class="proj-text">Enabled reliable internal Q&A with traceability, and introduced a measurable evaluation loop that supports iteration without quality drift.</span>
+              </div>
+              <div class="proj-line">
+                <span class="proj-label lbl-contrib">Role</span>
+                <span class="proj-text">I designed the retrieval pipeline, implemented the service layer and logging, and built the evaluation framework end to end. I defined rubric interpretations and drove regression strategy so quality stays stable as prompts and models change.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Research Section -->
+      <section class="section" id="research">
+        <h2 class="section-title">Research</h2>
+        <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">
+          My work centers on anomaly detection, representation learning, and probabilistic or Bayesian modeling, with an emphasis on unsupervised methods and reproducibility. I study auto-encoder families and variational formulations for high-dimensional data, build governed analytics for population health settings, and publish practical comparisons that surface efficiency and trade-offs across model classes.
+        </p>
+        <div class="research-focus">
+          <div class="research-item">
+            <h4>Unsupervised Anomaly Detection</h4>
+            <p>Disentanglement in latent spaces, total-correlation objectives, and conditional VAEs for detecting rare structure in image and tabular data.</p>
+          </div>
+          <div class="research-item">
+            <h4>Representation Learning</h4>
+            <p>Comparative studies of auto-encoder architectures that quantify reconstruction quality, sampling behavior, latent visualization, and classification accuracy.</p>
+          </div>
+          <div class="research-item">
+            <h4>Applied Health Analytics</h4>
+            <p>Population-scale modeling with governance, documentation, and repeatable pipelines as part of the NSERC CREATE VADA program.</p>
+          </div>
+          <div class="research-item">
+            <h4>NLP & Information Retrieval</h4>
+            <p>RAG systems, document processing, text classification, and evaluation frameworks for language model applications.</p>
+          </div>
+        </div>
+      </section>
+
+ <!-- Teaching Section -->
+<section class="section" id="teaching">
+  <h2 class="section-title">Teaching</h2>
+  <div class="teaching-grid">
+
+    <div class="teaching-card">
+      <div class="teaching-institution">University of British Columbia</div>
+
+      <div class="teaching-term">
+        <div class="teaching-term-title">Winter 2026</div>
+        <ul class="teaching-courses">
+          <li>
+            <a style="font-size: 0.9rem;" href="https://github.com/aaneloy/FRE521D-Winter2026-UBC">
+              FRE 521D: Data Analytics in Climate, Food and Environment
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="teaching-term">
+        <div class="teaching-term-title">Fall 2025</div>
+        <ul class="teaching-courses">
+          <li>FRE 501: Topics in Food Market Analysis (Co-instructor)</li>
+        </ul>
+      </div>
+
+      <div class="teaching-term">
+        <div class="teaching-term-title">Winter 2025</div>
+        <ul class="teaching-courses">
+          <li>
+            <a style="font-size: 0.9rem;" href="https://github.com/aaneloy/FRE521D-Winter2025_UBC">
+              FRE 521D: Data Analytics in Climate, Food and Environment
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+
+          <div class="teaching-card">
+            <div class="teaching-institution">Douglas College</div>
+            <div class="teaching-term">
+              <div class="teaching-term-title">Summer 2025</div>
+              <ul class="teaching-courses">
+                <li>CSIS 3300: Database II</li>
+                <li>CSIS 3360: Fundamentals of Data Analytics</li>
+                <li>CSIS 4260: Special Topics in Data Analytics</li>
+              </ul>
+            </div>
+            <div class="teaching-term">
+              <div class="teaching-term-title">Winter 2025</div>
+              <ul class="teaching-courses">
+                <li>CSIS 1175: Introduction to Programming I</li>
+                <li>CSIS 2200: Systems Analysis & Design</li>
+                <li>CSIS 3860: Data Visualization</li>
+              </ul>
+            </div>
+            <div class="teaching-term">
+              <div class="teaching-term-title">Summer 2024</div>
+              <ul class="teaching-courses">
+                <li>CSIS 2300: Database I</li>
+                <li>CSIS 3300: Database II</li>
+                <li>CSIS 3360: Fundamentals of Data Analytics</li>
+              </ul>
+            </div>
+            <div class="teaching-term">
+              <div class="teaching-term-title">Winter 2024</div>
+              <ul class="teaching-courses">
+                <li>CSIS 2200: Systems Analysis & Design</li>
+                <li>CSIS 2300: Database I</li>
+                <li>
+  <a style="font-size: 0.9rem;" href="https://github.com/aaneloy/CSIS-3290-Fundamentals-of-Machine-Learning-in-Data-Science">
+    CSIS 3290: Fundamentals of Machine Learning in Data Science
+  </a>
+</li>
+ </ul>
+            </div>
+          </div>
+
+          <div class="teaching-card">
+            <div class="teaching-institution">Vancouver Island University</div>
+            <div class="teaching-term">
+              <div class="teaching-term-title">Fall 2023</div>
+              <ul class="teaching-courses">
+                <li>CSCI 251: Systems and Networks</li>
+                <li>CSCI 159: Computer Science I</li>
+                <li>CSCI 112: Applications Programming</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="teaching-card">
+            <div class="teaching-institution">University of Manitoba</div>
+            <div class="teaching-term">
+              <div class="teaching-term-title">Winter 2023</div>
+              <ul class="teaching-courses">
+                <li>DATA 2010: Tools and Techniques for Data Science</li>
+              </ul>
+            </div>
+            <div class="teaching-term">
+              <div class="teaching-term-title">Fall 2022</div>
+              <ul class="teaching-courses">
+                <li>COMP 3490: Computer Graphics 1</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Guest Lectures Section -->
+      <section class="section" id="guest-lectures">
+        <h2 class="section-title">Guest Lectures and Seminar Presentations</h2>
+        <div class="lectures-list">
+          <div class="lecture-category">
+            <h4>Invited Sessions</h4>
+            <div class="lecture-item">
+              <a href="https://icsa-canada-chapter.org/symposium2022/">ICSA-Canada Chapter 2022 Symposium</a>, Banff Center, Banff, Alberta, Canada.
+              <br><em>Topic:</em> Auto-encoders for Anomaly Detection: Efficiency and Trade-Offs.
+            </div>
+          </div>
+          <div class="lecture-category">
+            <h4>Lectures</h4>
+            <div class="lecture-item">
+              <a href="https://github.com/aaneloy/Workshop-on-Machine-Learning-2018">Introduction to Machine Learning</a>, North South University, Dhaka, Bangladesh.
+            </div>
+            <div class="lecture-item">
+              <b>Courses:</b> <a href="https://usask.instructure.com/courses/43914/assignments/syllabus">STAT 447: Statistical Machine Learning for Data Science</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Publications Section -->
+      <section class="section" id="publications">
+        <h2 class="section-title">Publications</h2>
+        <p style="text-align: center; margin-bottom: 24px; color: var(--text-secondary);">
+          See my Google Scholar profile for the <a href="https://scholar.google.com/citations?user=WjL1EDcAAAAJ">most recent publications</a>.
+        </p>
+
+        <div class="publications-grid">
+
+          <div class="publication-card">
+            <div class="publication-image">
+              <img src="images/dcvae.png" alt="DCVAE">
+            </div>
+            <div class="publication-content">
+              <a href="https://github.com/UMDimReduction/Disentangled-Conditional-Variational-Autoencoder" target="_blank" class="publication-title">
+                Disentangled Conditional Variational Autoencoder for Unsupervised Anomaly Detection
+              </a>
+              <div class="publication-authors">
+                <strong>Asif Ahmed Neloy</strong>*, Maxime Turgeon
+              </div>
+              <div class="publication-venue">
+                IEEE International Conference on Big Data (IEEE BigData 2024), 2024
+              </div>
+              <div class="publication-links">
+                <a href="https://github.com/aaneloy/IEEE_BigData2024_dcvae" class="pub-link">GitHub</a>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10825554" class="pub-link">IEEE Xplore</a>
+              </div>
+              <p class="publication-desc">
+                A novel generative architecture combining beta-VAE, CVAE, and total correlation to enhance feature disentanglement and improve anomaly detection in high-dimensional datasets.
+              </p>
+            </div>
+          </div>
+
+          <div class="publication-card">
+            <div class="publication-image">
+              <img src="images/mlwa.png" alt="MLWA">
+            </div>
+            <div class="publication-content">
+              <a href="https://doi.org/10.1016/j.mlwa.2024.100572" target="_blank" class="publication-title">
+                A Comprehensive Study of Auto-Encoders for Anomaly Detection: Efficiency and Trade-offs
+              </a>
+              <div class="publication-authors">
+                <strong>Asif Ahmed Neloy</strong>*, Maxime Turgeon
+              </div>
+              <div class="publication-venue">
+                Machine Learning with Applications, 2024
+              </div>
+              <div class="publication-links">
+                <a href="https://github.com/UMDimReduction/autoencoder-Efficiency_vs_Tradeoffs" class="pub-link">Project Page</a>
+                <a href="https://doi.org/10.1016/j.mlwa.2024.100572" class="pub-link">DOI</a>
+              </div>
+              <p class="publication-desc">
+                Systematic review of 11 Auto-Encoder architectures, analyzing reconstruction ability, sample generation, latent space visualization, and anomaly classification accuracy.
+              </p>
+            </div>
+          </div>
+
+          <div class="publication-card">
+            <div class="publication-image">
+              <img src="images/icdm.png" alt="ICDM">
+            </div>
+            <div class="publication-content">
+              <a href="https://www.computer.org/csdl/proceedings-article/icdmw/2022/460900a435/1KBqUqu7I7S" target="_blank" class="publication-title">
+                Feature Extraction and Prediction of Combined Text and Survey Data using Two-Staged Modeling
+              </a>
+              <div class="publication-authors">
+                <strong>Asif Ahmed Neloy</strong>*, Maxime Turgeon
+              </div>
+              <div class="publication-venue">
+                ICDM, 2022
+              </div>
+              <div class="publication-links">
+                <a href="https://github.com/aaneloy/ICDM2022" class="pub-link">Project Page</a>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10031068" class="pub-link">IEEE</a>
+              </div>
+              <p class="publication-desc">
+                Two-stage modeling approach combining stacked ensemble classifiers with CNN and bidirectional RNN for NLP problems in real-world datasets.
+              </p>
+            </div>
+          </div>
+
+          <div class="publication-card">
+            <div class="publication-image">
+              <img src="images/icmlc.png" alt="ICMLC">
+            </div>
+            <div class="publication-content">
+              <a href="https://dl.acm.org/doi/abs/10.1145/3318299.3318377" target="_blank" class="publication-title">
+                Ensemble Learning Based Rental Apartment Price Prediction Model by Categorical Features Factoring
+              </a>
+              <div class="publication-authors">
+                <strong>Asif Ahmed Neloy</strong>*, HM Sadman Haque, Md Mahmud Ul Islam
+              </div>
+              <div class="publication-venue">
+                ICMLC, 2021
+              </div>
+              <div class="publication-links">
+                <a href="https://dl.acm.org/doi/abs/10.1145/3318299.3318377" class="pub-link">ACM ICMLC</a>
+              </div>
+              <p class="publication-desc">
+                Apartment rental price prediction using categorical feature factoring and ensemble learning, comparing tree-based and boosting methods.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Python Packages Section -->
+      <section class="section" id="python-packages">
+        <h2 class="section-title">Python Packages</h2>
+        <div class="packages-grid">
+          <div class="package-card">
+            <div class="package-name">
+              <a href="https://pypi.org/project/DataScalerSelector/">Data Scaler Selector</a>
+              <span class="package-status status-active">Active</span>
+            </div>
+            <p class="package-desc">Open-source Python library to select the appropriate data scaler for your Machine Learning model.</p>
+          </div>
+          <div class="package-card">
+            <div class="package-name">
+              <a href="https://pypi.org/project/ImagetoSketch/">Image to Sketch</a>
+              <span class="package-status status-active">Active</span>
+            </div>
+            <p class="package-desc">Python open-source library to convert color or B&W image to pencil sketch.</p>
+          </div>
+          <div class="package-card">
+            <div class="package-name">
+              Data Preparer
+              <span class="package-status status-progress">In Progress</span>
+            </div>
+            <p class="package-desc">Open-source Python package to clean and prepare your dataset before applying a machine learning model.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-credit">
+          Template credit - <a href="https://jonbarron.info/">Jon Barron</a>!
+          <br>
+          Last updated: <span id="lastUpdated">January 11, 2026</span>
+        </div>
+
+        <div class="visitors-section">
+          <div class="visitors-title" id="visitors">Visitors</div>
+          <div id="visitors-map" style="display:inline-block;width:120px;height:100px;overflow:hidden;">
+            <script type="text/javascript" id="clstr_globe"
+                    src="https://clustrmaps.com/globe.js?d=kJ1-l2PAoZk5tCK1gzdI3GkqmAJxXnop_koxwXRsXIg">
+            </script>
+            <noscript>
+              <img alt="Visitor map"
+                   src="https://www.clustrmaps.com/map_v2.png?d=kJ1-l2PAoZk5tCK1gzdI3GkqmAJxXnop_koxwXRsXIg&cl=ffffff"
+                   style="width:220px;height:auto;border-radius:6px;">
+            </noscript>
+          </div>
+        </div>
+
+        <p class="copyright">
+          &copy; 2025 Asif. All rights reserved.
+        </p>
+      </footer>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="scrollToTop()" aria-label="Scroll to top">&#8593;</button>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+      // Scroll to top functionality
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Show/hide scroll button
+      window.addEventListener('scroll', function() {
+        const scrollBtn = document.querySelector('.scroll-top');
+        if (window.pageYOffset > 300) {
+          scrollBtn.classList.add('visible');
+        } else {
+          scrollBtn.classList.remove('visible');
+        }
+      });
+
+      // Toggle project details
+      function toggleProject(card) {
+        card.classList.toggle('expanded');
+      }
+
+      // Intersection Observer for section animations
+      document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.section');
+
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach(section => {
+          observer.observe(section);
+        });
+
+        // Active nav link highlighting
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', function() {
+          let current = '';
+
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 200) {
+              current = section.getAttribute('id');
+            }
+          });
+
+          navLinks.forEach(link => {
+            link.style.background = '';
+            if (link.getAttribute('href') === '#' + current) {
+              link.style.background = 'rgba(23, 114, 208, 0.1)';
+            }
+          });
+        });
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Add hover effects to skill tags
+      document.querySelectorAll('.skill-tag').forEach(tag => {
+        tag.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.1) rotate(2deg)';
+        });
+        tag.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+        });
+      });
+    </script>
   </body>
 </html>
