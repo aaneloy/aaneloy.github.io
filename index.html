@@ -542,7 +542,7 @@
       .publication-card {
         display: flex;
         gap: 20px;
-        background: var(--bg-highlight);
+        background: var(--bg-main);
         border-radius: var(--border-radius);
         padding: 20px;
         box-shadow: var(--shadow-sm);
@@ -961,7 +961,7 @@
 
           <div class="bio-text">
             <p>
-              I am a Lead Data Scientist/MLE with GM Training Arc, Vancouver, BC, where I build player-facing analytics for esports training using gameplay telemetry and video-based computer vision.
+              I am a Lead Data Scientist/MLE with GM <a href="https://start.trainingarc.gg/" target="_blank" rel="noopener noreferrer">Training Arc</a>, Vancouver, BC, where I build player-facing analytics for esports training using gameplay telemetry and video-based computer vision.
             </p>
 
             <p>
@@ -1068,7 +1068,7 @@
           <!-- Project 1 -->
           <div class="project-card" onclick="toggleProject(this)">
             <span class="project-number">01</span>
-            <div class="project-title">Crosshair and Event Detection for Skill Assessment (Training Arc)</div>
+            <div class="project-title">Crosshair and Event Detection for Skill Assessment (<a href="https://start.trainingarc.gg/" target="_blank" rel="noopener noreferrer">Training Arc</a>)</div>
             <div class="project-expand-hint">
               <span class="arrow">&#9660;</span> Click to expand details
             </div>
@@ -1426,7 +1426,30 @@
 
         <div class="publications-grid">
 
-          <div class="publication-card">
+          <div class="publication-card" style="background: var(--bg-highlight);">
+            <div class="publication-image">
+              <img src="images/CAIAC.png" alt="CAIAC">
+            </div>
+            <div class="publication-content">
+              <a href="https://github.com/aaneloy/A-Meta-Analysis-of-Evaluation-Framework-Reliability-and-Cross-Domain-Generalization" target="_blank" class="publication-title">
+                A Meta-Analysis of Evaluation Framework Reliability and Cross-Domain Generalization
+              </a>
+              <div class="publication-authors">
+                <strong>Asif Ahmed Neloy</strong>, MD Nazmul Islam
+              </div>
+              <div class="publication-venue">
+                <em>Under Review</em>
+              </div>
+              <div class="publication-links">
+                <a href="https://github.com/aaneloy/A-Meta-Analysis-of-Evaluation-Framework-Reliability-and-Cross-Domain-Generalization" class="pub-link">GitHub</a>
+              </div>
+              <p class="publication-desc">
+                First systematic meta-analysis comparing 20 RAG evaluation frameworks across three knowledge domains, revealing extreme inter-framework heterogeneity and three distinct methodological clusters.
+              </p>
+            </div>
+          </div>
+
+          <div class="publication-card" style="background: var(--bg-highlight);">
             <div class="publication-image">
               <img src="images/dcvae.png" alt="DCVAE">
             </div>
@@ -1450,7 +1473,7 @@
             </div>
           </div>
 
-          <div class="publication-card">
+          <div class="publication-card" style="background: var(--bg-highlight);">
             <div class="publication-image">
               <img src="images/mlwa.png" alt="MLWA">
             </div>
@@ -1498,28 +1521,6 @@
             </div>
           </div>
 
-          <div class="publication-card">
-            <div class="publication-image">
-              <img src="images/icmlc.png" alt="ICMLC">
-            </div>
-            <div class="publication-content">
-              <a href="https://dl.acm.org/doi/abs/10.1145/3318299.3318377" target="_blank" class="publication-title">
-                Ensemble Learning Based Rental Apartment Price Prediction Model by Categorical Features Factoring
-              </a>
-              <div class="publication-authors">
-                <strong>Asif Ahmed Neloy</strong>*, HM Sadman Haque, Md Mahmud Ul Islam
-              </div>
-              <div class="publication-venue">
-                ICMLC, 2021
-              </div>
-              <div class="publication-links">
-                <a href="https://dl.acm.org/doi/abs/10.1145/3318299.3318377" class="pub-link">ACM ICMLC</a>
-              </div>
-              <p class="publication-desc">
-                Apartment rental price prediction using categorical feature factoring and ensemble learning, comparing tree-based and boosting methods.
-              </p>
-            </div>
-          </div>
 
         </div>
       </section>
